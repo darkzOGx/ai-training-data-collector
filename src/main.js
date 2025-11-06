@@ -217,7 +217,8 @@ await Actor.main(async () => {
                 content = $.text();
                 plainText = content;
             } else {
-                // structured-json
+                // structured-json - use markdown as the content format
+                content = turndownService.turndown(htmlContent);
                 plainText = $.text();
             }
 
