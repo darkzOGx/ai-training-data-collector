@@ -1,5 +1,5 @@
-# Use official Apify Node.js image with Chromium
-FROM apify/actor-node-chromium:18
+# Use official Apify Node.js image
+FROM apify/actor-node:18
 
 # Copy package files
 COPY package*.json ./
