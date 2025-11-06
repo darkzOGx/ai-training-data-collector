@@ -185,6 +185,7 @@ await Actor.main(async () => {
     let totalTokens = 0;
     let pagesCollected = 0;
     let pagesSkipped = 0;
+    const allMarkdownContent = []; // Collect all content for combined file
 
     // Create crawler
     const crawler = new CheerioCrawler({
@@ -323,6 +324,21 @@ await Actor.main(async () => {
 
             // Save to dataset
             await Actor.pushData(output);
+
+            // Save individual .md file
+            const filename = `page-${String(pagesCollected + 1).padStart(4, '0')}.md`;
+            const mdFileContent = `# ${title}\n\n**Source:** ${url}\n**Collected:** ${new Date().toISOString()}\n\n---\n\n${content}`;
+            await Actor.setValue(filename, mdFileContent, { contentType: 'text/markdown' });
+
+            // Add to combined content
+            allMarkdownContent.push({
+                title,
+                url,
+                content,
+                wordCount,
+                tokenCount: tokens
+            });
+
             pagesCollected++;
 
             // Check token limit
@@ -374,4 +390,31 @@ await Actor.main(async () => {
         costEstimate: ((totalTokens / 10000) * 5).toFixed(2),
         completedAt: new Date().toISOString()
     });
+
+    // Create combined training data file
+    if (allMarkdownContent.length > 0) {
+        console.log(`\n📦 Creating combined training data file...`);
+
+        let combinedContent = `# AI Training Data Collection\n\n`;
+        combinedContent += `**Collection Date:** ${new Date().toISOString()}\n`;
+        combinedContent += `**Total Pages:** ${pagesCollected}\n`;
+        combinedContent += `**Total Tokens:** ${totalTokens.toLocaleString()}\n`;
+        combinedContent += `**Total Words:** ${allMarkdownContent.reduce((sum, page) => sum + page.wordCount, 0).toLocaleString()}\n\n`;
+        combinedContent += `---\n\n`;
+
+        // Add each page with clear separation
+        allMarkdownContent.forEach((page, index) => {
+            combinedContent += `\n\n<!-- Page ${index + 1} of ${pagesCollected} -->\n`;
+            combinedContent += `# ${page.title}\n\n`;
+            combinedContent += `**Source:** ${page.url}\n`;
+            combinedContent += `**Words:** ${page.wordCount.toLocaleString()} | **Tokens:** ${page.tokenCount.toLocaleString()}\n\n`;
+            combinedContent += `---\n\n`;
+            combinedContent += page.content;
+            combinedContent += `\n\n${'='.repeat(80)}\n`;
+        });
+
+        await Actor.setValue('TRAINING_DATA.md', combinedContent, { contentType: 'text/markdown' });
+        console.log(`   ✅ Combined file saved: TRAINING_DATA.md`);
+        console.log(`   📊 Total size: ${Math.round(combinedContent.length / 1024)} KB`);
+    }
 });

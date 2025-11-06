@@ -11,9 +11,10 @@ Extract clean, LLM-ready content from websites for AI training, RAG pipelines, a
 - **Minimum quality thresholds** - Skip thin content automatically
 
 ### AI-Ready Output Formats
-- **Markdown** - Clean, structured format perfect for RAG pipelines
+- **Markdown files** - Individual `.md` files per page + combined training file
+- **JSON dataset** - Structured data with metadata and token counts
 - **Plain text** - Simple text extraction
-- **Structured JSON** - Programmatic access with metadata
+- **Download ready** - All files available in Key-Value Store
 
 ### Automatic Categorization
 - **NLP-powered tagging** - Automatically extract topics and keywords
@@ -186,6 +187,73 @@ Use: Market research, competitive intelligence, trend analysis
   }
 }
 ```
+
+## 📥 Markdown File Downloads
+
+In addition to the JSON dataset, the actor automatically generates downloadable Markdown files:
+
+### Individual Page Files
+Each collected page is saved as a separate `.md` file in the **Key-Value Store**:
+- **Naming:** `page-0001.md`, `page-0002.md`, etc.
+- **Format:** Clean markdown with metadata header
+- **Use case:** Cherry-pick specific pages for training
+
+**Example file structure:**
+```markdown
+# Understanding Machine Learning
+
+**Source:** https://example.com/article
+**Collected:** 2025-01-15T10:30:00.000Z
+
+---
+
+# Understanding Machine Learning
+
+Machine learning is a subset of artificial intelligence...
+```
+
+### Combined Training File
+All collected content merged into a single `TRAINING_DATA.md` file:
+- **Location:** Key-Value Store → `TRAINING_DATA.md`
+- **Format:** All pages concatenated with clear separators
+- **Use case:** Bulk LLM training, RAG ingestion, fine-tuning datasets
+
+**Example combined file:**
+```markdown
+# AI Training Data Collection
+
+**Collection Date:** 2025-01-15T10:30:00.000Z
+**Total Pages:** 26
+**Total Tokens:** 93,986
+**Total Words:** 62,421
+
+---
+
+<!-- Page 1 of 26 -->
+# Understanding Machine Learning
+
+**Source:** https://example.com/article
+**Words:** 1,543 | **Tokens:** 2,104
+
+---
+
+Machine learning is a subset of artificial intelligence...
+
+================================================================================
+
+<!-- Page 2 of 26 -->
+# Deep Learning Basics
+...
+```
+
+### How to Download
+
+1. **After run completes** → Go to **Storage** tab
+2. **Click "Key-Value Store"**
+3. **Download options:**
+   - Individual files: Click any `page-XXXX.md`
+   - Combined file: Click `TRAINING_DATA.md`
+   - All files: Use "Download all" button
 
 ## 💰 Pricing Model
 
