@@ -24,7 +24,14 @@ turndownService.remove(['script', 'style', 'iframe', 'noscript']);
  */
 function countTokens(text) {
     try {
+        if (!text || typeof text !== 'string') {
+            return 0;
+        }
         const tokens = encoding.encode(text);
+        if (!tokens || !Array.isArray(tokens)) {
+            // Fallback: rough estimate (1 token ≈ 4 characters)
+            return Math.ceil(text.length / 4);
+        }
         return tokens.length;
     } catch (error) {
         // Fallback: rough estimate (1 token ≈ 4 characters)
