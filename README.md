@@ -450,18 +450,10 @@ Coming soon:
 - Creating domain-specific knowledge bases
 - MCP integration patterns
 
-## 📞 Support
-
-- **Documentation:** [Link to docs]
-- **Issues:** [GitHub issues]
-- **Questions:** [Support email]
-
 ## 📄 License
 
 Apache-2.0
 
 ---
-
-**Built with ❤️ for the AI community**
 
 Collect high-quality training data. Build better AI systems.
