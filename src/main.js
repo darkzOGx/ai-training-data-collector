@@ -165,7 +165,16 @@ await Actor.main(async () => {
         maxPagesPerDomain = 100,
         topicKeywords = [],
         contentSelectors = [],
-        excludeSelectors = ['nav', 'header', 'footer', '.advertisement', '.sidebar', '.comments'],
+        excludeSelectors = [
+            'nav', 'header', 'footer', 'aside',
+            '.advertisement', '.sidebar', '.comments',
+            '.ad', '.ads', '.ad-container', '.sponsored',
+            '.social-share', '.newsletter-signup', '.related-articles',
+            '.breadcrumbs', '.pagination', '.site-nav', '.site-header', '.site-footer',
+            '.trending', '.most-popular', '.recommendations',
+            '[class*="ad-"]', '[class*="ads-"]', '[id*="ad-"]', '[id*="ads-"]',
+            'script', 'style', 'iframe', 'noscript'
+        ],
         outputFormat = 'markdown',
         includeMetadata = true,
         autoTagging = true,
@@ -215,12 +224,14 @@ await Actor.main(async () => {
                 content = turndownService.turndown(htmlContent);
                 plainText = content.replace(/[#*_\[\]()]/g, ' '); // Remove markdown syntax for analysis
             } else if (outputFormat === 'plain-text') {
-                content = $.text();
+                // Convert to markdown first to clean, then to plain text
+                const tempMarkdown = turndownService.turndown(htmlContent);
+                content = tempMarkdown.replace(/[#*_\[\]()]/g, ' ');
                 plainText = content;
             } else {
                 // structured-json - use markdown as the content format
                 content = turndownService.turndown(htmlContent);
-                plainText = $.text();
+                plainText = content.replace(/[#*_\[\]()]/g, ' '); // Remove markdown syntax for analysis
             }
 
             // Count words
