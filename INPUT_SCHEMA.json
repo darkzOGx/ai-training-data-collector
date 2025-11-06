@@ -1,0 +1,107 @@
+{
+  "title": "AI Training Data Collector Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "URLs to start crawling from. The crawler will follow links from these pages.",
+      "editor": "requestListSources",
+      "placeholderValue": "https://example.com",
+      "minItems": 1
+    },
+    "crawlStrategy": {
+      "title": "Crawl Strategy",
+      "type": "string",
+      "description": "How to crawl the website",
+      "default": "same-domain",
+      "enum": ["same-domain", "same-hostname", "all"],
+      "enumTitles": ["Same Domain (e.g., blog.example.com, www.example.com)", "Same Hostname Only", "Follow All Links"]
+    },
+    "maxCrawlDepth": {
+      "title": "Max Crawl Depth",
+      "type": "integer",
+      "description": "Maximum depth of links to follow from start URLs",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "maxPagesPerDomain": {
+      "title": "Max Pages Per Domain",
+      "type": "integer",
+      "description": "Maximum number of pages to crawl per domain (affects cost)",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "topicKeywords": {
+      "title": "Topic Keywords (Optional)",
+      "type": "array",
+      "description": "Filter content by topic keywords. Only pages matching these topics will be collected. Leave empty to collect all content.",
+      "editor": "stringList",
+      "placeholderValue": "artificial intelligence, machine learning"
+    },
+    "contentSelectors": {
+      "title": "Content Selectors (Optional)",
+      "type": "array",
+      "description": "CSS selectors for main content (e.g., 'article', '.content', '#main'). Leave empty for automatic detection.",
+      "editor": "stringList",
+      "placeholderValue": "article, .post-content"
+    },
+    "excludeSelectors": {
+      "title": "Exclude Selectors",
+      "type": "array",
+      "description": "CSS selectors to exclude (navigation, ads, etc.)",
+      "editor": "stringList",
+      "default": ["nav", "header", "footer", ".advertisement", ".sidebar", ".comments"],
+      "placeholderValue": "nav, footer, .ads"
+    },
+    "outputFormat": {
+      "title": "Output Format",
+      "type": "string",
+      "description": "Format for extracted content",
+      "default": "markdown",
+      "enum": ["markdown", "plain-text", "structured-json"],
+      "enumTitles": ["Markdown (RAG-ready)", "Plain Text", "Structured JSON"]
+    },
+    "includeMetadata": {
+      "title": "Include Metadata",
+      "type": "boolean",
+      "description": "Include page title, URL, date, and extracted keywords",
+      "default": true
+    },
+    "autoTagging": {
+      "title": "Auto-Tagging",
+      "type": "boolean",
+      "description": "Automatically extract and tag content by topics using NLP",
+      "default": true
+    },
+    "minContentLength": {
+      "title": "Min Content Length (words)",
+      "type": "integer",
+      "description": "Minimum word count for collected pages",
+      "default": 100,
+      "minimum": 10
+    },
+    "tokenLimit": {
+      "title": "Token Limit (Optional)",
+      "type": "integer",
+      "description": "Stop crawling after collecting this many tokens. Leave empty for no limit.",
+      "minimum": 1000
+    },
+    "embeddings": {
+      "title": "Generate Embeddings",
+      "type": "boolean",
+      "description": "Prepare content for vector databases (adds embedding-ready format)",
+      "default": false
+    },
+    "mcpCompatible": {
+      "title": "MCP-Compatible Output",
+      "type": "boolean",
+      "description": "Format output for Model Context Protocol (Claude/GPT integration)",
+      "default": true
+    }
+  },
+  "required": ["startUrls"]
+}

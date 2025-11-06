@@ -1,0 +1,30 @@
+{
+  "startUrls": [
+    {
+      "url": "https://blog.apify.com/state-of-web-scraping/"
+    },
+    {
+      "url": "https://blog.apify.com/what-is-apify-store/"
+    }
+  ],
+  "crawlStrategy": "same-hostname",
+  "maxCrawlDepth": 1,
+  "maxPagesPerDomain": 10,
+  "topicKeywords": [],
+  "contentSelectors": [],
+  "excludeSelectors": [
+    "nav",
+    "header",
+    "footer",
+    ".advertisement",
+    ".sidebar",
+    ".comments"
+  ],
+  "outputFormat": "markdown",
+  "includeMetadata": true,
+  "autoTagging": true,
+  "minContentLength": 100,
+  "tokenLimit": 20000,
+  "embeddings": false,
+  "mcpCompatible": true
+}

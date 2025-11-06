@@ -1,0 +1,56 @@
+{
+  "actorSpecification": 1,
+  "name": "ai-training-data-collector",
+  "title": "AI Training Data Collector (MCP-Compatible)",
+  "description": "Crawl websites and extract clean, LLM-ready content for AI training, RAG pipelines, and vector databases. Auto-categorization, markdown output, token counting, and MCP integration for Claude/GPT.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "ai-training-data-collector"
+  },
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "categories": [
+    "AI",
+    "AUTOMATION",
+    "DEVELOPER_TOOLS"
+  ],
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Training Data",
+      "description": "Extracted and cleaned content ready for AI training",
+      "views": {
+        "content": {
+          "title": "Content View",
+          "transformation": {
+            "fields": [
+              "url",
+              "title",
+              "content",
+              "wordCount",
+              "tokenCount",
+              "metadata"
+            ]
+          }
+        },
+        "embeddings": {
+          "title": "Embedding-Ready",
+          "transformation": {
+            "fields": [
+              "embeddingReady"
+            ]
+          }
+        },
+        "mcp": {
+          "title": "MCP Format",
+          "transformation": {
+            "fields": [
+              "mcp"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

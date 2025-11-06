@@ -1,0 +1,71 @@
+{
+  "mcpServers": {
+    "ai-training-data-collector": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/mcp-server-apify",
+        "ai-training-data-collector"
+      ],
+      "env": {
+        "APIFY_API_TOKEN": "YOUR_APIFY_API_TOKEN"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "collect_training_data",
+      "description": "Crawl websites and extract clean content for AI training, RAG pipelines, and vector databases. Returns markdown-formatted content with metadata and token counts.",
+      "parameters": {
+        "startUrls": {
+          "type": "array",
+          "description": "URLs to start crawling from",
+          "required": true
+        },
+        "maxPages": {
+          "type": "number",
+          "description": "Maximum number of pages to crawl",
+          "default": 100
+        },
+        "topicKeywords": {
+          "type": "array",
+          "description": "Filter content by topic keywords (optional)"
+        },
+        "outputFormat": {
+          "type": "string",
+          "enum": ["markdown", "plain-text", "structured-json"],
+          "default": "markdown"
+        }
+      },
+      "returns": {
+        "type": "array",
+        "items": {
+          "url": "string",
+          "title": "string",
+          "content": "string",
+          "wordCount": "number",
+          "tokenCount": "number",
+          "metadata": "object"
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "prompt": "Collect training data about machine learning from scikit-learn.org documentation",
+      "parameters": {
+        "startUrls": ["https://scikit-learn.org/stable/documentation.html"],
+        "topicKeywords": ["machine learning", "classification", "regression"],
+        "maxPages": 50
+      }
+    },
+    {
+      "prompt": "Extract content from a company blog for RAG pipeline",
+      "parameters": {
+        "startUrls": ["https://example.com/blog"],
+        "maxPages": 100,
+        "outputFormat": "markdown"
+      }
+    }
+  ]
+}

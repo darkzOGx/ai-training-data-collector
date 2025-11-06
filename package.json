@@ -1,0 +1,42 @@
+{
+  "name": "ai-training-data-collector",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI Training Data Collector - Crawl websites, extract clean content for LLMs, RAG pipelines, and vector databases. MCP-compatible for Claude/GPT integration.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "author": "Your Name",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apify": "^3.5.0",
+    "crawlee": "^3.7.0",
+    "cheerio": "^1.0.0-rc.12",
+    "turndown": "^7.1.2",
+    "js-tiktoken": "^1.0.10",
+    "natural": "^6.10.0",
+    "stopword": "^2.0.8",
+    "keyword-extractor": "^0.0.28"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "apify",
+    "actor",
+    "ai",
+    "machine-learning",
+    "training-data",
+    "web-scraping",
+    "rag",
+    "vector-database",
+    "llm",
+    "mcp",
+    "claude",
+    "gpt",
+    "embeddings",
+    "markdown"
+  ]
+}
