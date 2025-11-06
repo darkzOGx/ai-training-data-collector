@@ -257,12 +257,12 @@ Machine learning is a subset of artificial intelligence...
 
 ## 💰 Pricing Model
 
-**Pay-per-token pricing:** $5 per 10,000 tokens
+**Pay-per-token pricing:** $0.70 per 10,000 tokens
 
 ### Cost Examples
-- **Small doc site** (50 pages, 500K tokens): $2.50
-- **Medium blog** (200 pages, 2M tokens): $10.00
-- **Large knowledge base** (1000 pages, 10M tokens): $50.00
+- **Small doc site** (50 pages, 500K tokens): $3.50
+- **Medium blog** (200 pages, 2M tokens): $14.00
+- **Large knowledge base** (1000 pages, 10M tokens): $70.00
 
 ### Cost Control Features
 - Set `tokenLimit` to cap spending

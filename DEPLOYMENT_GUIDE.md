@@ -106,7 +106,7 @@ Before publishing, set your pricing:
 4. **Set pricing**:
    ```
    Base charge: $0
-   Per 10,000 tokens: $5.00
+   Per 10,000 tokens: $0.70
    ```
 5. **Save settings**
 
@@ -119,7 +119,7 @@ Before publishing, set your pricing:
    - ✅ Description: From README.md
    - ✅ README: Complete documentation
    - ✅ Categories: AI, Automation, Developer Tools
-   - ✅ Pricing: $5 per 10K tokens
+   - ✅ Pricing: $0.70 per 10K tokens
 
 3. **Click "Publish to Store"**
 
@@ -157,23 +157,23 @@ Before publishing, set your pricing:
 ### Pricing Model: Pay Per Token
 
 ```
-$5 per 10,000 tokens
+$0.70 per 10,000 tokens
 
 Examples:
-- 50 pages (500K tokens): $2.50
-- 200 pages (2M tokens): $10.00
-- 1000 pages (10M tokens): $50.00
+- 50 pages (500K tokens): $3.50
+- 200 pages (2M tokens): $14.00
+- 1000 pages (10M tokens): $70.00
 ```
 
 ### Revenue Split
 
 ```
-User pays: $5.00
+User pays: $0.70 per 10K tokens
 ├── Compute: $0.25 (paid by user to Apify)
-├── Platform fee: $1.00 (20% to Apify)
-└── Your earnings: $4.00 (80%)
+├── Platform fee: $0.14 (20% to Apify)
+└── Your earnings: $0.56 (80%)
 
-Your profit margin: 100% (no costs)
+Your profit margin: ~100% (minimal costs after compute)
 ```
 
 ### Minimum Payout
@@ -195,7 +195,7 @@ Your profit margin: 100% (no costs)
   - Get 5-star reviews from test users
 
 ### Phase 2: Growth (Month 1)
-- **Goal**: 100 users, $500/month
+- **Goal**: 100 users, $100-200/month
 - **Actions**:
   - Create tutorial videos
   - Write integration guides
@@ -203,7 +203,7 @@ Your profit margin: 100% (no costs)
   - Improve based on reviews
 
 ### Phase 3: Scale (Month 3-6)
-- **Goal**: 500+ users, $5K/month
+- **Goal**: 500+ users, $1-2K/month
 - **Actions**:
   - Add premium features
   - Create LangChain/LlamaIndex examples
@@ -226,13 +226,13 @@ Track these in Apify Console:
 - [ ] 100+ runs
 - [ ] 50+ unique users
 - [ ] 4.5+ star rating
-- [ ] $500+ revenue
+- [ ] $100-200+ revenue
 
 ### Month 3 Targets
 - [ ] 500+ runs
 - [ ] 200+ unique users
 - [ ] Top 100 actor ranking
-- [ ] $2,500+ revenue
+- [ ] $1,000-2,000+ revenue
 
 ---
 
@@ -280,7 +280,7 @@ Before launching, verify:
 - [ ] Actor imported to Apify
 - [ ] Build successful
 - [ ] Test run successful
-- [ ] Pricing configured ($5 per 10K tokens)
+- [ ] Pricing configured ($0.70 per 10K tokens)
 - [ ] README.md complete
 - [ ] Published to store
 - [ ] Submitted to $1M challenge
